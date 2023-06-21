@@ -8,6 +8,9 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.time.LocalDate;
 
+/**
+ * Controlador de la aplicación de inmobiliaria.
+ */
 public class InmobiliariaController {
     private int idContratoBusquedaCC = 0;
 
@@ -30,13 +33,17 @@ public class InmobiliariaController {
     private TextField IDCLIENTETXT;
 
     private Connection connection;
-
+    /**
+     * Método de inicialización del controlador.
+     */
     @FXML
     void initialize() {
         conectarBaseDatos();
     }
 
-
+    /**
+     * Establece la conexión a la base de datos.
+     */
     private void conectarBaseDatos() {
         try {
             connection = SQLServerConnection.getConnection();
@@ -45,7 +52,9 @@ public class InmobiliariaController {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Maneja el evento de buscar un cliente.
+     */
     @FXML
     void BuscarCliente() {
         String clienteId = IDCLIENTETXT.getText();
@@ -84,7 +93,9 @@ public class InmobiliariaController {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Maneja el evento de registrar un cliente.
+     */
     @FXML
     void RegistrarCliente() {
         // Obtener los valores de los campos de texto
@@ -169,7 +180,13 @@ public class InmobiliariaController {
         }
         cambiarPestana(tabInicio);
     }
-
+    /**
+     * Obtiene el ID del cliente generado después de ejecutar una consulta INSERT en la base de datos.
+     *
+     * @param statement el objeto PreparedStatement utilizado para ejecutar la consulta INSERT.
+     * @return el ID del cliente generado.
+     * @throws SQLException si no se puede obtener el ID del cliente generado.
+     */
     private int obtenerIdCliente(PreparedStatement statement) throws SQLException {
         ResultSet generatedKeys = statement.getGeneratedKeys();
         if (generatedKeys.next()) {
@@ -178,7 +195,12 @@ public class InmobiliariaController {
             throw new SQLException("No se pudo obtener el ID del cliente generado.");
         }
     }
-
+    /**
+     * Obtiene el total de filas afectadas por una operación en la base de datos.
+     *
+     * @param filasAfectadas el arreglo de enteros que representa las filas afectadas.
+     * @return el total de filas afectadas.
+     */
     private int obtenerTotalFilasAfectadas(int[] filasAfectadas) {
         int totalFilasAfectadas = 0;
         for (int filas : filasAfectadas) {
@@ -186,12 +208,16 @@ public class InmobiliariaController {
         }
         return totalFilasAfectadas;
     }
-
+    /**
+     * Cambia a la ventana de registro en la interfaz gráfica.
+     */
     @FXML
     void CambiarVentanaRegistro() {
         cambiarPestana(tabRegistro);
     }
-
+    /**
+     * Cambia a la ventana de requisitos en la interfaz gráfica y guarda los valores en la base de datos.
+     */
     @FXML
     void CambiarVentanaRequisitos() {
         cambiarPestana(tabRequisitos);
@@ -240,7 +266,9 @@ public class InmobiliariaController {
             }
         }
     }
-
+    /**
+     * Cancela el proceso de registro, vuelve a la ventana de inicio y realiza un rollback en la base de datos.
+     */
     @FXML
     void CancelarR() {
         cambiarPestana(tabInicio);
@@ -255,7 +283,9 @@ public class InmobiliariaController {
         }
     }
 
-
+    /**
+     * Finaliza el proceso de registro, vuelve a la ventana de inicio y guarda los valores en la base de datos.
+     */
     @FXML
     void FinalizarC() {
         cambiarPestana(tabInicio);
@@ -307,7 +337,9 @@ public class InmobiliariaController {
             }
         }
     }
-
+    /**
+     * Limpia los campos de texto y selección en la ventana de registro.
+     */
     private void limpiarCamposRegistro() {
         MONTOTXT.clear();
         ESTADOTXT.clear();
@@ -336,7 +368,11 @@ public class InmobiliariaController {
         FECHAFINTXT.setValue(null);
         NACIMIENTOTXT.setValue(null);
     }
-
+    /**
+     * Cambia a la pestaña especificada en el TabPane.
+     *
+     * @param tab La pestaña a la que se quiere cambiar.
+     */
     private void cambiarPestana(Tab pestana) {
         tabPane.getSelectionModel().select(pestana);
     }
