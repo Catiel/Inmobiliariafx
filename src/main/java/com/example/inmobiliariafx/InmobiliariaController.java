@@ -371,7 +371,7 @@ public class InmobiliariaController {
     /**
      * Cambia a la pestaña especificada en el TabPane.
      *
-     * @param tab La pestaña a la que se quiere cambiar.
+     * @param pestana La pestaña a la que se quiere cambiar.
      */
     private void cambiarPestana(Tab pestana) {
         tabPane.getSelectionModel().select(pestana);
