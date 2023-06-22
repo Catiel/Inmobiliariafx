@@ -1,0 +1,60 @@
+
+k
+java:S2095¶"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(·Ç‚æøÿÿÿÿ
+f
+java:S2095’"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¾ø§ù
+e
+java:S2095ï"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‹ÕŞ
+e
+java:S2095v"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ô¬×˜
+j
+java:S2095@"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(·Ç‚æøÿÿÿÿ
+m	java:S116"SRename this field "MONTOTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡Çë¶øÿÿÿÿ
+n	java:S116"TRename this field "ESTADOTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡Çë¶øÿÿÿÿ
+s	java:S116"YRename this field "OBSERVACIONTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡Çë¶øÿÿÿÿ
+t	java:S116"ZRename this field "NACIONALIDADTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡Çë¶øÿÿÿÿ
+q	java:S116"WRename this field "DIRECCIONTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡Çë¶øÿÿÿÿ
+n	java:S116"TRename this field "NOMBRETXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡Çë¶øÿÿÿÿ
+p	java:S116"VRename this field "INGRESOSTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄØ‰…ùÿÿÿÿ
+q	java:S116"WRename this field "OCUPACIONTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄØ‰…ùÿÿÿÿ
+n	java:S116"TRename this field "GENEROTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄØ‰…ùÿÿÿÿ
+v	java:S116"\Rename this field "IDENTIFICACIONTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄØ‰…ùÿÿÿÿ
+q	java:S116"WRename this field "TELEFONOSTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄØ‰…ùÿÿÿÿ
+s	java:S116"YRename this field "REFERENCIASTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄØ‰…ùÿÿÿÿ
+l	java:S116"RRename this field "TIPOTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚İïùúÿÿÿÿ
+|	java:S116"bRename this field "CANTIDADHABITACIONESTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚İïùúÿÿÿÿ
+t	java:S116"ZRename this field "TIPOTRANSACCION" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚İïùúÿÿÿÿ
+n	java:S116"TRename this field "GARAJETXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚İïùúÿÿÿÿ
+t	java:S116"ZRename this field "PRECIOMINIMOTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚İïùúÿÿÿÿ
+r	java:S116"XRename this field "SUPERFICIETXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚İïùúÿÿÿÿ
+l	java:S116"RRename this field "ZONATXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªª·Éşÿÿÿÿ
+r	java:S116"XRename this field "CANTIDADBANOS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªª·Éşÿÿÿÿ
+m	java:S116"SRename this field "PATIOTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªª·Éşÿÿÿÿ
+{	java:S116"aRename this field "COMENTARIOADICIONALTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªª·Éşÿÿÿÿ
+t	java:S116"ZRename this field "PRECIOMAXIMOTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªª·Éşÿÿÿÿ
+r	java:S116"XRename this field "SUPERFICIEMAX" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ªª·Éşÿÿÿÿ
+n	java:S116"YRename this field "FECHAINICIOTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şó¿œ
+k	java:S116"VRename this field "FECHAFINTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şó¿œ
+m	java:S116"XRename this field "NACIMIENTOTXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(şó¿œ
+k	java:S116!"WRename this field "IDCLIENTETXT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËúÄE
+a
+java:S1659"FDeclare "ESTADOTXT" and all following declarations on a separate line.(¡Çë¶øÿÿÿÿ
+^
+java:S1659"HDeclare "FECHAFINTXT" and all following declarations on a separate line.(şó¿œ
+\
+java:S1659"FDeclare "tabInicio" and all following declarations on a separate line.( ¸Ê°
+N	java:S1062"9Replace this use of System.out or System.err by a logger.(ù·€„
+h	java:S100;"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤‘ßûÿÿÿÿ
+c	java:S100d"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÌÔ·Í
+c	java:S100×"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«¤ÄD
+i	java:S100Ş"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—®„©ıÿÿÿÿ
+O	java:S106‚"9Replace this use of System.out or System.err by a logger.(äŸ¤
+T	java:S106‡"9Replace this use of System.out or System.err by a logger.(±®ëŞıÿÿÿÿ
+i	java:S100‘"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘àÁÔúÿÿÿÿ
+T	java:S106—"9Replace this use of System.out or System.err by a logger.(ÀÏñ üÿÿÿÿ
+T	java:S106š"9Replace this use of System.out or System.err by a logger.(¶•Î±øÿÿÿÿ
+i	java:S100¢"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õùôşÿÿÿÿ
+T	java:S106È"9Replace this use of System.out or System.err by a logger.(Ô¥¸Ìûÿÿÿÿ
+T	java:S106Í"9Replace this use of System.out or System.err by a logger.(¶í¸‚úÿÿÿÿ
+O	java:S106Ğ"9Replace this use of System.out or System.err by a logger.(‹ıˆÁ
+d	java:S100ü"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çªùš
