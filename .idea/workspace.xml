@@ -15,13 +15,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d127f9dd-89ae-42ce-a423-bcb8f45d9619" name="Changes" comment="eliminacion de algo innecesario">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/InmobiliariaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/InmobiliariaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/InmobiliariaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/InmobiliariaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/SQLServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/SQLServerConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +151,7 @@
       <workItem from="1687373707261" duration="65000" />
       <workItem from="1687385796988" duration="3502000" />
       <workItem from="1687389577205" duration="5856000" />
-      <workItem from="1687396997296" duration="500000" />
+      <workItem from="1687396997296" duration="709000" />
     </task>
     <task id="LOCAL-00001" summary="modificacion de documentacion">
       <created>1687313638646</created>
@@ -187,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1687394906619</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="eliminacion de algo innecesario">
+      <option name="closed" value="true" />
+      <created>1687397534210</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1687397534210</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

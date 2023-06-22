@@ -15,6 +15,7 @@ public class InmobiliariaApplication extends Application {
 
     /**
      * Punto de entrada del programa.
+     *
      * @param args Los argumentos de línea de comandos (no se utilizan en esta aplicación).
      */
     public static void main(String[] args) {
@@ -24,6 +25,7 @@ public class InmobiliariaApplication extends Application {
     /**
      * Método start() de la clase Application.
      * Se llama cuando se inicia la aplicación y se encarga de configurar la interfaz de usuario.
+     *
      * @param stage El objeto Stage principal de la aplicación.
      * @throws IOException Si ocurre un error al cargar el archivo FXML.
      */

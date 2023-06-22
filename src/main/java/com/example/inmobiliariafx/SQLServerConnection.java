@@ -14,6 +14,7 @@ public class SQLServerConnection {
 
     /**
      * Obtiene una conexión a la base de datos.
+     *
      * @return La conexión a la base de datos.
      * @throws SQLException Si ocurre un error al establecer la conexión.
      */

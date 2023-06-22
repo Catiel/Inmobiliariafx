@@ -33,6 +33,7 @@ public class InmobiliariaController {
     private TextField IDCLIENTETXT;
 
     private Connection connection;
+
     /**
      * Método de inicialización del controlador.
      */
@@ -52,6 +53,7 @@ public class InmobiliariaController {
             e.printStackTrace();
         }
     }
+
     /**
      * Maneja el evento de buscar un cliente.
      */
@@ -93,6 +95,7 @@ public class InmobiliariaController {
             e.printStackTrace();
         }
     }
+
     /**
      * Maneja el evento de registrar un cliente.
      */
@@ -180,6 +183,7 @@ public class InmobiliariaController {
         }
         cambiarPestana(tabInicio);
     }
+
     /**
      * Obtiene el ID del cliente generado después de ejecutar una consulta INSERT en la base de datos.
      *
@@ -195,6 +199,7 @@ public class InmobiliariaController {
             throw new SQLException("No se pudo obtener el ID del cliente generado.");
         }
     }
+
     /**
      * Obtiene el total de filas afectadas por una operación en la base de datos.
      *
@@ -208,6 +213,7 @@ public class InmobiliariaController {
         }
         return totalFilasAfectadas;
     }
+
     /**
      * Cambia a la ventana de registro en la interfaz gráfica.
      */
@@ -215,6 +221,7 @@ public class InmobiliariaController {
     void CambiarVentanaRegistro() {
         cambiarPestana(tabRegistro);
     }
+
     /**
      * Cambia a la ventana de requisitos en la interfaz gráfica y guarda los valores en la base de datos.
      */
@@ -266,6 +273,7 @@ public class InmobiliariaController {
             }
         }
     }
+
     /**
      * Cancela el proceso de registro, vuelve a la ventana de inicio y realiza un rollback en la base de datos.
      */
@@ -337,6 +345,7 @@ public class InmobiliariaController {
             }
         }
     }
+
     /**
      * Limpia los campos de texto y selección en la ventana de registro.
      */
@@ -368,6 +377,7 @@ public class InmobiliariaController {
         FECHAFINTXT.setValue(null);
         NACIMIENTOTXT.setValue(null);
     }
+
     /**
      * Cambia a la pestaña especificada en el TabPane.
      *
