@@ -15,7 +15,10 @@ public class InmobiliariaController {
     private int idContratoBusquedaCC = 0; // Almacena el ID de contrato para la búsqueda por código de cliente
 
     @FXML
-    private TextField MONTOTXT, ESTADOTXT, OBSERVACIONTXT, NACIONALIDADTXT, DIRECCIONTXT, NOMBRETXT, INGRESOSTXT, OCUPACIONTXT, GENEROTXT, IDENTIFICACIONTXT, TELEFONOSTXT, REFERENCIASTXT, TIPOTXT, CANTIDADHABITACIONESTXT, TIPOTRANSACCION, GARAJETXT, PRECIOMINIMOTXT, SUPERFICIETXT, ZONATXT, CANTIDADBANOS, PATIOTXT, COMENTARIOADICIONALTXT, PRECIOMAXIMOTXT, SUPERFICIEMAX;
+    private TextField MONTOTXT, ESTADOTXT, OBSERVACIONTXT, NACIONALIDADTXT, DIRECCIONTXT, NOMBRETXT, INGRESOSTXT,
+            OCUPACIONTXT, GENEROTXT, IDENTIFICACIONTXT, TELEFONOSTXT, REFERENCIASTXT, TIPOTXT, CANTIDADHABITACIONESTXT,
+            TIPOTRANSACCION, GARAJETXT, PRECIOMINIMOTXT, SUPERFICIETXT, ZONATXT, CANTIDADBANOS, PATIOTXT,
+            COMENTARIOADICIONALTXT, PRECIOMAXIMOTXT, SUPERFICIEMAX;
 // Campos de texto para ingresar información en la interfaz gráfica
 
     @FXML
@@ -94,11 +97,14 @@ public class InmobiliariaController {
                 String numeroIdentificacion = resultSet.getString("NUMEROIDENTIFICACIONCLIENTE");
 
                 // Crear un mensaje con la información del cliente encontrado
-                String mensaje = "Cliente encontrado:\n" + "ID: " + id + "\n" + "Nombre: " + nombre + "\n" + "Número de Identificación: " + numeroIdentificacion;
+                String mensaje = "Cliente encontrado:\n" + "ID: " + id + "\n" + "Nombre: " + nombre + "\n" +
+                        "Número de Identificación: " + numeroIdentificacion;
 
                 // Mostrar un cuadro de diálogo con el mensaje y las opciones "Agregar Contrato" y "Cancelar"
                 Object[] options = {"Agregar Contrato", "Cancelar"};
-                int choice = JOptionPane.showOptionDialog(null, mensaje, "Cliente encontrado", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+                int choice =
+                        JOptionPane.showOptionDialog(null, mensaje, "Cliente encontrado", JOptionPane.DEFAULT_OPTION,
+                                JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
                 if (choice == 0) {
                     // Si se selecciona "Agregar Contrato", desactivar la confirmación automática de cambios en la base de datos
@@ -150,8 +156,11 @@ public class InmobiliariaController {
 
         try {
             // Consulta para insertar el cliente en la tabla CLIENTE
-            String sqlCliente = "INSERT INTO CLIENTE (NOMCLIENTE, GENEROCLIENTE, NUMEROIDENTIFICACIONCLIENTE, " + "INGRESOSCLIENTE, DIRCLIENTE, FECHANACIMIENTOCLIENTE, NACIONALIDADCLIENTE, " + "OCUPACIOCLIENTE, REFERENCIASPERSONALESCLIENTE) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement statementCliente = connection.prepareStatement(sqlCliente, Statement.RETURN_GENERATED_KEYS);
+            String sqlCliente = "INSERT INTO CLIENTE (NOMCLIENTE, GENEROCLIENTE, NUMEROIDENTIFICACIONCLIENTE, " +
+                    "INGRESOSCLIENTE, DIRCLIENTE, FECHANACIMIENTOCLIENTE, NACIONALIDADCLIENTE, " +
+                    "OCUPACIOCLIENTE, REFERENCIASPERSONALESCLIENTE) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement statementCliente =
+                    connection.prepareStatement(sqlCliente, Statement.RETURN_GENERATED_KEYS);
             statementCliente.setString(1, nombre);
             statementCliente.setString(2, genero);
             statementCliente.setString(3, numeroIdentificacion);
@@ -296,11 +305,13 @@ public class InmobiliariaController {
         String idCliente = IDCLIENTETXT.getText();
 
         // Insertar los valores en la tabla CONTRATO_BUSQUEDA de la base de datos
-        String insertQuery = "INSERT INTO CONTRATO_BUSQUEDA (IDCLIENTE, OBSERVACIONESADICIONALES, ESTADOCONTRATOBUSQUEDA, FECHAINICIOBUSQUEDA, FECHAFINBUSQUEDA, MONTOBUSQUEDA) VALUES (?, ?, ?, ?, ?, ?)";
+        String insertQuery =
+                "INSERT INTO CONTRATO_BUSQUEDA (IDCLIENTE, OBSERVACIONESADICIONALES, ESTADOCONTRATOBUSQUEDA, FECHAINICIOBUSQUEDA, FECHAFINBUSQUEDA, MONTOBUSQUEDA) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             connection.setAutoCommit(false);
-            PreparedStatement insertStatement = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement insertStatement =
+                    connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             insertStatement.setInt(1, Integer.parseInt(idCliente));
             insertStatement.setString(2, observaciones);
             insertStatement.setString(3, estado);
@@ -386,7 +397,8 @@ public class InmobiliariaController {
 
         // Insertar los valores en la tabla REQUERIMIENTOS_CLIENTE de la base de datos
         try {
-            String query = "INSERT INTO REQUERIMIENTOS_CLIENTE (IDCONTRATOBUSQUEDA, TIPOINMUEBLE, ZONA, PRECIOMIN, CANTIDADHABITACIONES, CANTIDADBANOS, SUPERFICIEMIN, COMENTARIOADICIONAL, TIPOTRANSACCION, PATIOS, GARAJES, SUPERFICIEMAX, PRECIOMAX) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query =
+                    "INSERT INTO REQUERIMIENTOS_CLIENTE (IDCONTRATOBUSQUEDA, TIPOINMUEBLE, ZONA, PRECIOMIN, CANTIDADHABITACIONES, CANTIDADBANOS, SUPERFICIEMIN, COMENTARIOADICIONAL, TIPOTRANSACCION, PATIOS, GARAJES, SUPERFICIEMAX, PRECIOMAX) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, idContratoBusquedaCC);
             statement.setString(2, tipoInmueble);
@@ -410,7 +422,8 @@ public class InmobiliariaController {
             e.printStackTrace();
             try {
                 connection.rollback();
-                System.out.println("Error: Se ha realizado un rollback debido a un error al guardar los datos en la base de datos.");
+                System.out.println(
+                        "Error: Se ha realizado un rollback debido a un error al guardar los datos en la base de datos.");
             } catch (SQLException rollbackException) {
                 rollbackException.printStackTrace();
                 System.out.println("Error: No se pudo realizar el rollback.");
