@@ -13,13 +13,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d127f9dd-89ae-42ce-a423-bcb8f45d9619" name="Changes" comment="Diseño final">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="d127f9dd-89ae-42ce-a423-bcb8f45d9619" name="Changes" comment="Documentacion corregida y generado el javadoc">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/InmobiliariaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/InmobiliariaApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/InmobiliariaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/InmobiliariaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/SQLServerConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/SQLServerConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/inmobiliariafx/Inmobiliaria-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/inmobiliariafx/Inmobiliaria-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +152,7 @@
       <workItem from="1687389577205" duration="5856000" />
       <workItem from="1687396997296" duration="844000" />
       <workItem from="1687397897619" duration="998000" />
-      <workItem from="1687567451539" duration="9195000" />
+      <workItem from="1687567451539" duration="9830000" />
     </task>
     <task id="LOCAL-00001" summary="modificacion de documentacion">
       <created>1687313638646</created>
@@ -219,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1687398747199</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Documentacion corregida y generado el javadoc">
+      <option name="closed" value="true" />
+      <created>1687576924180</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1687576924180</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +236,7 @@
     <MESSAGE value="eliminacion de algo innecesario" />
     <MESSAGE value="Ordenado" />
     <MESSAGE value="Diseño final" />
-    <option name="LAST_COMMIT_MESSAGE" value="Diseño final" />
+    <MESSAGE value="Documentacion corregida y generado el javadoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Documentacion corregida y generado el javadoc" />
   </component>
 </project>

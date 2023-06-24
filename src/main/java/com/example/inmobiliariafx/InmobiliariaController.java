@@ -15,10 +15,7 @@ public class InmobiliariaController {
     private int idContratoBusquedaCC = 0; // Almacena el ID de contrato para la búsqueda por código de cliente
 
     @FXML
-    private TextField MONTOTXT, ESTADOTXT, OBSERVACIONTXT, NACIONALIDADTXT, DIRECCIONTXT, NOMBRETXT,
-            INGRESOSTXT, OCUPACIONTXT, GENEROTXT, IDENTIFICACIONTXT, TELEFONOSTXT, REFERENCIASTXT,
-            TIPOTXT, CANTIDADHABITACIONESTXT, TIPOTRANSACCION, GARAJETXT, PRECIOMINIMOTXT, SUPERFICIETXT,
-            ZONATXT, CANTIDADBANOS, PATIOTXT, COMENTARIOADICIONALTXT, PRECIOMAXIMOTXT, SUPERFICIEMAX;
+    private TextField MONTOTXT, ESTADOTXT, OBSERVACIONTXT, NACIONALIDADTXT, DIRECCIONTXT, NOMBRETXT, INGRESOSTXT, OCUPACIONTXT, GENEROTXT, IDENTIFICACIONTXT, TELEFONOSTXT, REFERENCIASTXT, TIPOTXT, CANTIDADHABITACIONESTXT, TIPOTRANSACCION, GARAJETXT, PRECIOMINIMOTXT, SUPERFICIETXT, ZONATXT, CANTIDADBANOS, PATIOTXT, COMENTARIOADICIONALTXT, PRECIOMAXIMOTXT, SUPERFICIEMAX;
 // Campos de texto para ingresar información en la interfaz gráfica
 
     @FXML
@@ -97,17 +94,11 @@ public class InmobiliariaController {
                 String numeroIdentificacion = resultSet.getString("NUMEROIDENTIFICACIONCLIENTE");
 
                 // Crear un mensaje con la información del cliente encontrado
-                String mensaje = "Cliente encontrado:\n" +
-                        "ID: " + id + "\n" +
-                        "Nombre: " + nombre + "\n" +
-                        "Número de Identificación: " + numeroIdentificacion;
+                String mensaje = "Cliente encontrado:\n" + "ID: " + id + "\n" + "Nombre: " + nombre + "\n" + "Número de Identificación: " + numeroIdentificacion;
 
                 // Mostrar un cuadro de diálogo con el mensaje y las opciones "Agregar Contrato" y "Cancelar"
                 Object[] options = {"Agregar Contrato", "Cancelar"};
-                int choice = JOptionPane.showOptionDialog(
-                        null, mensaje, "Cliente encontrado",
-                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                        null, options, options[0]);
+                int choice = JOptionPane.showOptionDialog(null, mensaje, "Cliente encontrado", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
                 if (choice == 0) {
                     // Si se selecciona "Agregar Contrato", desactivar la confirmación automática de cambios en la base de datos
@@ -159,10 +150,7 @@ public class InmobiliariaController {
 
         try {
             // Consulta para insertar el cliente en la tabla CLIENTE
-            String sqlCliente = "INSERT INTO CLIENTE (NOMCLIENTE, GENEROCLIENTE, NUMEROIDENTIFICACIONCLIENTE, " +
-                    "INGRESOSCLIENTE, DIRCLIENTE, FECHANACIMIENTOCLIENTE, NACIONALIDADCLIENTE, " +
-                    "OCUPACIOCLIENTE, REFERENCIASPERSONALESCLIENTE) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sqlCliente = "INSERT INTO CLIENTE (NOMCLIENTE, GENEROCLIENTE, NUMEROIDENTIFICACIONCLIENTE, " + "INGRESOSCLIENTE, DIRCLIENTE, FECHANACIMIENTOCLIENTE, NACIONALIDADCLIENTE, " + "OCUPACIOCLIENTE, REFERENCIASPERSONALESCLIENTE) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statementCliente = connection.prepareStatement(sqlCliente, Statement.RETURN_GENERATED_KEYS);
             statementCliente.setString(1, nombre);
             statementCliente.setString(2, genero);
