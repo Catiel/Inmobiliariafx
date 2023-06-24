@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 /**
  * Esta clase proporciona una conexión a la base de datos SQL Server para la aplicación de Inmobiliaria.
+ * Utiliza el controlador JDBC para establecer la conexión.
  */
 public class SQLServerConnection {
     private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=Inmobiliaria";
@@ -13,7 +14,7 @@ public class SQLServerConnection {
     private static final String PASSWORD = "root";
 
     /**
-     * Obtiene una conexión a la base de datos.
+     * Obtiene una conexión a la base de datos SQL Server.
      *
      * @return La conexión a la base de datos.
      * @throws SQLException Si ocurre un error al establecer la conexión.
