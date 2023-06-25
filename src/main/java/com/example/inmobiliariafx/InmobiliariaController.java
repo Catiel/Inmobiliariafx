@@ -309,7 +309,6 @@ public class InmobiliariaController {
                 "INSERT INTO CONTRATO_BUSQUEDA (IDCLIENTE, OBSERVACIONESADICIONALES, ESTADOCONTRATOBUSQUEDA, FECHAINICIOBUSQUEDA, FECHAFINBUSQUEDA, MONTOBUSQUEDA) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
-            connection.setAutoCommit(false);
             PreparedStatement insertStatement =
                     connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             insertStatement.setInt(1, Integer.parseInt(idCliente));
