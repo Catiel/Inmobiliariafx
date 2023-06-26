@@ -3,10 +3,10 @@ package com.example.inmobiliariafx;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import javax.swing.*;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.Optional;
 
 /**
  * Controlador de la aplicación de inmobiliaria.
@@ -60,60 +60,71 @@ public class InmobiliariaController {
         }
     }
 
-
     /**
-     * Busca un cliente en la base de datos utilizando su ID de cliente y muestra un mensaje con su información.
-     * Además, brinda la opción de agregar un contrato para el cliente encontrado.
+     * Busca un cliente en la base de datos utilizando el ID proporcionado en un campo de texto.
+     * Realiza una llamada al procedimiento almacenado 'BuscarCliente' y muestra los resultados en un cuadro de diálogo.
+     * Permite al usuario agregar un contrato para el cliente encontrado.
      * <p>
-     * Este método obtiene el ID del cliente ingresado en un campo de texto de la interfaz gráfica.
-     * Luego, realiza una consulta SQL para buscar al cliente en la tabla CLIENTE utilizando su ID.
-     * Si se encuentra un cliente con el ID proporcionado, se obtienen sus datos y se muestra un cuadro de diálogo
-     * con la información del cliente. El cuadro de diálogo ofrece las opciones "Agregar Contrato" y "Cancelar".
-     * Si se selecciona "Agregar Contrato", se desactiva la confirmación automática de cambios en la base de datos
-     * y se cambia a la pestaña de contrato en la interfaz gráfica. En caso de no encontrar un cliente con el ID
-     * ingresado, se muestra un cuadro de diálogo informando que el cliente no ha sido encontrado.
-     * </p>
+     *
+     * @FXML Este método está asociado a un evento de acción en la interfaz gráfica definida en un archivo FXML.
+     * Se invoca cuando el usuario hace clic en el botón de búsqueda de cliente.
      */
     @FXML
     void BuscarCliente() {
         // Obtener el ID del cliente desde un campo de texto
-        String clienteId = IDCLIENTETXT.getText();
-
-        // Consulta SQL para buscar el cliente por su ID
-        String query = "SELECT * FROM CLIENTE WHERE IDCLIENTE = ?";
+        int clienteId = Integer.parseInt(IDCLIENTETXT.getText());
 
         try {
-            // Preparar la consulta
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, clienteId);
+            // Preparar la llamada al procedimiento almacenado 'BuscarCliente'
+            String sql = "{CALL BuscarCliente(?)}";
+            CallableStatement statement = connection.prepareCall(sql);
 
-            // Ejecutar la consulta y obtener los resultados
+            // Establecer el parámetro de entrada
+            statement.setInt(1, clienteId);
+
+            // Ejecutar la llamada al procedimiento almacenado
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
                 // Si se encontró un cliente, obtener los datos del resultado
-                String id = resultSet.getString("IDCLIENTE");
+                int id = resultSet.getInt("IDCLIENTE");
                 String nombre = resultSet.getString("NOMCLIENTE");
                 String numeroIdentificacion = resultSet.getString("NUMEROIDENTIFICACIONCLIENTE");
 
-                // Crear un mensaje con la información del cliente encontrado
+                // Construir un mensaje con la información del cliente encontrado
                 String mensaje = "Cliente encontrado:\n" + "ID: " + id + "\n" + "Nombre: " + nombre + "\n" +
                         "Número de Identificación: " + numeroIdentificacion;
 
                 // Mostrar un cuadro de diálogo con el mensaje y las opciones "Agregar Contrato" y "Cancelar"
-                Object[] options = {"Agregar Contrato", "Cancelar"};
-                int choice =
-                        JOptionPane.showOptionDialog(null, mensaje, "Cliente encontrado", JOptionPane.DEFAULT_OPTION,
-                                JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Cliente encontrado");
+                alert.setHeaderText(null);
+                alert.setContentText(mensaje);
 
-                if (choice == 0) {
+                // Crear botones personalizados para las opciones
+                ButtonType agregarContratoButton = new ButtonType("Agregar Contrato");
+                ButtonType cancelarButton = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                // Agregar los botones al cuadro de diálogo
+                alert.getButtonTypes().setAll(agregarContratoButton, cancelarButton);
+
+                // Mostrar el cuadro de diálogo y esperar la respuesta del usuario
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if (result.isPresent() && result.get() == agregarContratoButton) {
                     // Si se selecciona "Agregar Contrato", desactivar la confirmación automática de cambios en la base de datos
                     connection.setAutoCommit(false);
                     cambiarPestana(tabContrato);
                 }
             } else {
                 // Si no se encontró un cliente, mostrar un cuadro de diálogo de mensaje
-                JOptionPane.showMessageDialog(null, "Cliente no encontrado.");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Cliente no encontrado");
+                alert.setHeaderText(null);
+                alert.setContentText("No se encontró un cliente con el ID especificado.");
+
+                // Mostrar el cuadro de diálogo de mensaje
+                alert.showAndWait();
             }
 
             // Cerrar el conjunto de resultados y la declaración
@@ -127,18 +138,12 @@ public class InmobiliariaController {
 
 
     /**
-     * Registra un nuevo cliente en la base de datos con la información proporcionada,
-     * incluyendo los números de teléfono asociados al cliente.
-     * <p>
-     * Este método toma los valores ingresados en los campos de texto de la interfaz gráfica,
-     * como el género, número de identificación, ingresos, nombre, dirección, fecha de nacimiento,
-     * nacionalidad, ocupación, referencias personales y números de teléfono. Luego, registra al
-     * cliente en la tabla CLIENTE de la base de datos y obtiene el ID del cliente generado. A
-     * continuación, registra los números de teléfono asociados al cliente en la tabla
-     * TELEFONO_CLIENTE. Si el registro se realiza correctamente, se muestran mensajes de éxito
-     * correspondientes. En caso de error, se muestran mensajes de error. Finalmente, cambia a la
-     * pestaña de inicio en la interfaz gráfica.
-     * </p>
+     * Registra un nuevo cliente en la base de datos con los valores proporcionados en los campos de texto.
+     * Llama al procedimiento almacenado "RegistrarCliente" para realizar el registro.
+     * Muestra mensajes de éxito o error según el resultado del registro.
+     *
+     * @FXML Este método está asociado a un evento de acción en la interfaz gráfica definida en un archivo FXML.
+     * Se invoca cuando el usuario hace clic en el botón de registro de cliente.
      */
     @FXML
     void RegistrarCliente() {
@@ -155,83 +160,54 @@ public class InmobiliariaController {
         String telefonos = TELEFONOSTXT.getText();
 
         try {
-            // Consulta para insertar el cliente en la tabla CLIENTE
-            String sqlCliente = "INSERT INTO CLIENTE (NOMCLIENTE, GENEROCLIENTE, NUMEROIDENTIFICACIONCLIENTE, " +
-                    "INGRESOSCLIENTE, DIRCLIENTE, FECHANACIMIENTOCLIENTE, NACIONALIDADCLIENTE, " +
-                    "OCUPACIOCLIENTE, REFERENCIASPERSONALESCLIENTE) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement statementCliente =
-                    connection.prepareStatement(sqlCliente, Statement.RETURN_GENERATED_KEYS);
-            statementCliente.setString(1, nombre);
-            statementCliente.setString(2, genero);
-            statementCliente.setString(3, numeroIdentificacion);
-            statementCliente.setBigDecimal(4, ingresos);
-            statementCliente.setString(5, direccion);
-            statementCliente.setDate(6, java.sql.Date.valueOf(fechaNacimiento));
-            statementCliente.setString(7, nacionalidad);
-            statementCliente.setString(8, ocupacion);
-            statementCliente.setString(9, referenciasPersonales);
+            // Consulta para llamar al procedimiento almacenado RegistrarCliente
+            String sql = "{CALL RegistrarCliente(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+            CallableStatement statement = connection.prepareCall(sql);
 
-            // Ejecutar la consulta para insertar el cliente y obtener el número de filas afectadas
-            int filasAfectadasCliente = statementCliente.executeUpdate();
+            // Establecer los parámetros de entrada
+            statement.setString(1, genero);
+            statement.setString(2, numeroIdentificacion);
+            statement.setBigDecimal(3, ingresos);
+            statement.setString(4, nombre);
+            statement.setString(5, direccion);
+            statement.setDate(6, java.sql.Date.valueOf(fechaNacimiento));
+            statement.setString(7, nacionalidad);
+            statement.setString(8, ocupacion);
+            statement.setString(9, referenciasPersonales);
+            statement.setString(10, telefonos);
 
-            if (filasAfectadasCliente > 0) {
-                // Si se registró el cliente correctamente, mostrar un mensaje de éxito
+            // Establecer los parámetros de salida
+            statement.registerOutParameter(11, Types.NVARCHAR);  // @mensaje
+            statement.registerOutParameter(12, Types.INTEGER);   // @idClienteGenerado
+
+            // Ejecutar el procedimiento almacenado
+            statement.execute();
+
+            // Obtener los valores de salida
+            String mensaje = statement.getString(11);
+            int idClienteGenerado = statement.getInt(12);
+
+            if (idClienteGenerado > 0) {
+                // Si se generó correctamente el cliente, mostrar un mensaje de éxito
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Registro exitoso");
-                alert.setContentText("Registro exitoso");
+                alert.setContentText(mensaje);
                 alert.showAndWait();
-
-                // Obtener el ID del cliente generado
-                int idCliente = obtenerIdCliente(statementCliente);
 
                 // Mostrar el ID del cliente generado en un mensaje
                 Alert idClienteAlert = new Alert(Alert.AlertType.INFORMATION);
                 idClienteAlert.setTitle("IDCLIENTE GENERADO");
-                idClienteAlert.setContentText("El IDCLIENTE GENERADO ES " + idCliente);
+                idClienteAlert.setContentText("El IDCLIENTE GENERADO ES " + idClienteGenerado);
                 idClienteAlert.showAndWait();
-
-                // Dividir los números de teléfono ingresados en un arreglo
-                String[] telefonosArray = telefonos.split(",");
-
-                // Consulta para insertar los números de teléfono en la tabla TELEFONO_CLIENTE
-                String sqlTelefonos = "INSERT INTO TELEFONO_CLIENTE (IDCLIENTE, TELEFONOCLIENTE) VALUES (?, ?)";
-                PreparedStatement statementTelefonos = connection.prepareStatement(sqlTelefonos);
-
-                // Iterar sobre los números de teléfono y agregarlos a la consulta como lotes
-                for (String telefono : telefonosArray) {
-                    statementTelefonos.setInt(1, idCliente);
-                    statementTelefonos.setString(2, telefono);
-                    statementTelefonos.addBatch();
-                }
-
-                // Ejecutar la consulta para insertar los números de teléfono y obtener el número de filas afectadas
-                int[] filasAfectadasTelefonos = statementTelefonos.executeBatch();
-                int totalFilasAfectadasTelefonos = obtenerTotalFilasAfectadas(filasAfectadasTelefonos);
-
-                if (totalFilasAfectadasTelefonos > 0) {
-                    // Si se registraron los números de teléfono correctamente, mostrar un mensaje de éxito
-                    Alert telefonosAlert = new Alert(Alert.AlertType.INFORMATION);
-                    telefonosAlert.setTitle("Números de teléfono registrados exitosamente");
-                    telefonosAlert.setContentText("Números de teléfono registrados exitosamente");
-                    telefonosAlert.showAndWait();
-                } else {
-                    // Si ocurrió un error al registrar los números de teléfono, mostrar un mensaje de error
-                    Alert errorTelefonosAlert = new Alert(Alert.AlertType.ERROR);
-                    errorTelefonosAlert.setTitle("Error al registrar los números de teléfono");
-                    errorTelefonosAlert.setContentText("Error al registrar los números de teléfono");
-                    errorTelefonosAlert.showAndWait();
-                }
-
-                statementTelefonos.close();
             } else {
                 // Si ocurrió un error al registrar el cliente, mostrar un mensaje de error
                 Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                 errorAlert.setTitle("Error al registrar");
-                errorAlert.setContentText("Error al registrar");
+                errorAlert.setContentText(mensaje);
                 errorAlert.showAndWait();
             }
 
-            statementCliente.close();
+            statement.close();
         } catch (SQLException ex) {
             // Manejar cualquier error de SQL imprimiendo la traza de la excepción
             ex.printStackTrace();
@@ -242,53 +218,18 @@ public class InmobiliariaController {
     }
 
 
-    /**
-     * Obtiene el ID del cliente generado después de ejecutar una consulta INSERT en la base de datos.
-     *
-     * @param statement el objeto PreparedStatement utilizado para ejecutar la consulta INSERT.
-     * @return el ID del cliente generado.
-     * @throws SQLException si no se puede obtener el ID del cliente generado.
-     */
-    private int obtenerIdCliente(PreparedStatement statement) throws SQLException {
-        ResultSet generatedKeys = statement.getGeneratedKeys();
-        if (generatedKeys.next()) {
-            return generatedKeys.getInt(1);
-        } else {
-            throw new SQLException("No se pudo obtener el ID del cliente generado.");
-        }
-    }
-
-    /**
-     * Obtiene el total de filas afectadas por una operación en la base de datos.
-     *
-     * @param filasAfectadas el arreglo de enteros que representa las filas afectadas.
-     * @return el total de filas afectadas.
-     */
-    private int obtenerTotalFilasAfectadas(int[] filasAfectadas) {
-        int totalFilasAfectadas = 0;
-        for (int filas : filasAfectadas) {
-            totalFilasAfectadas += filas;
-        }
-        return totalFilasAfectadas;
-    }
-
-    /**
-     * Cambia a la ventana de registro en la interfaz gráfica.
-     */
     @FXML
     void CambiarVentanaRegistro() {
         cambiarPestana(tabRegistro);
     }
 
     /**
-     * Cambia a la ventana de requisitos en la interfaz gráfica y guarda los valores del contrato en la base de datos.
-     * <p>
-     * Este método obtiene los valores de los campos de texto de la ventana de contrato, incluyendo el monto, estado, observaciones,
-     * fecha de inicio y fecha de fin. Luego, recupera el ID de cliente de la pestaña Inicio. A continuación, inserta los valores
-     * del contrato en la tabla CONTRATO_BUSQUEDA de la base de datos, estableciendo una transacción para asegurar la integridad de los datos.
-     * Si la inserción es exitosa, se obtiene el ID del contrato generado y se almacena en la variable idContratoBusquedaCC.
-     * <p>
-     * En caso de producirse una excepción SQL, se realiza un rollback para deshacer cualquier cambio en la base de datos.
+     * Cambia a la pestaña de Requisitos y registra un contrato de búsqueda en la base de datos.
+     * Recupera los valores de los campos de texto de la ventana Contrato y el ID de cliente de la pestaña Inicio.
+     * Llama al procedimiento almacenado 'RegistrarContratoBusqueda' para insertar los datos del contrato en la base de datos.
+     *
+     * @FXML Este método está asociado a un evento de acción en la interfaz gráfica definida en un archivo FXML.
+     * Se invoca cuando el usuario realiza una acción para cambiar a la pestaña de Requisitos.
      */
     @FXML
     void CambiarVentanaRequisitos() {
@@ -304,30 +245,27 @@ public class InmobiliariaController {
         // Obtener el ID de cliente de la pestaña Inicio
         String idCliente = IDCLIENTETXT.getText();
 
-        // Insertar los valores en la tabla CONTRATO_BUSQUEDA de la base de datos
-        String insertQuery =
-                "INSERT INTO CONTRATO_BUSQUEDA (IDCLIENTE, OBSERVACIONESADICIONALES, ESTADOCONTRATOBUSQUEDA, FECHAINICIOBUSQUEDA, FECHAFINBUSQUEDA, MONTOBUSQUEDA) VALUES (?, ?, ?, ?, ?, ?)";
+        // Llamar al procedimiento almacenado RegistrarContratoBusqueda
+        String insertProcedure = "{CALL RegistrarContratoBusqueda(?, ?, ?, ?, ?, ?, ?)}";
 
         try {
-            PreparedStatement insertStatement =
-                    connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
-            insertStatement.setInt(1, Integer.parseInt(idCliente));
-            insertStatement.setString(2, observaciones);
-            insertStatement.setString(3, estado);
-            insertStatement.setDate(4, java.sql.Date.valueOf(fechaInicio));
-            insertStatement.setDate(5, java.sql.Date.valueOf(fechaFin));
-            insertStatement.setBigDecimal(6, new BigDecimal(monto));
+            // Preparar la llamada al procedimiento almacenado
+            CallableStatement statement = connection.prepareCall(insertProcedure);
+            statement.setInt(1, Integer.parseInt(idCliente));
+            statement.setString(2, observaciones);
+            statement.setString(3, estado);
+            statement.setDate(4, java.sql.Date.valueOf(fechaInicio));
+            statement.setDate(5, java.sql.Date.valueOf(fechaFin));
+            statement.setBigDecimal(6, new BigDecimal(monto));
+            statement.registerOutParameter(7, Types.INTEGER);  // Parámetro de salida: idContratoBusqueda
 
-            int rowsAffected = insertStatement.executeUpdate();
+            // Ejecutar la llamada al procedimiento almacenado
+            statement.execute();
 
-            if (rowsAffected > 0) {
-                ResultSet generatedKeys = insertStatement.getGeneratedKeys();
-                if (generatedKeys.next()) {
-                    idContratoBusquedaCC = generatedKeys.getInt(1);
-                }
-            }
+            // Obtener el valor del parámetro de salida idContratoBusqueda
+            idContratoBusquedaCC = statement.getInt(7);
 
-            insertStatement.close();
+            statement.close();
 
             System.out.println("Datos del contrato de búsqueda insertados en la base de datos.");
         } catch (SQLException e) {
@@ -341,14 +279,14 @@ public class InmobiliariaController {
         }
     }
 
-
     /**
-     * Cancela el proceso de registro del contrato y los requisitos, vuelve a la ventana de inicio y realiza un rollback en la base de datos.
-     * <p>
-     * Este método cambia a la pestaña de inicio en la interfaz gráfica y limpia los campos de texto del registro.
-     * Luego, realiza un rollback en la base de datos para deshacer cualquier cambio realizado durante el proceso de registro.
-     * Si el rollback se realiza correctamente, se muestra un mensaje de éxito en la consola. En caso de producirse
-     * un error durante el rollback, se muestra un mensaje de error en la consola.
+     * Cancela la operación de registro de un contrato de búsqueda o de requisitos y regresa a la pestaña de Inicio.
+     * Llama al método 'cambiarPestana()' para cambiar a la pestaña de Inicio y al método 'limpiarcampos()' para limpiar los campos de texto.
+     * Realiza un rollback en la conexión de base de datos para deshacer cualquier cambio realizado.
+     *
+     * @FXML Este método está asociado a un evento de acción en la interfaz gráfica definida en un archivo FXML.
+     * Se invoca cuando el usuario realiza una acción para cancelar el registro de un contrato de búsqueda o los
+     * requisitos.
      */
     @FXML
     void CancelarR() {
@@ -364,17 +302,15 @@ public class InmobiliariaController {
         }
     }
 
-
     /**
-     * Finaliza el proceso de registro del contrado busqueda, vuelve a la ventana de inicio y guarda los valores en la base de datos.
-     * <p>
-     * Este método cambia a la pestaña de inicio en la interfaz gráfica. Luego, obtiene los valores de los campos de texto
-     * de la ventana de registro, incluyendo el tipo de inmueble, la zona, el precio mínimo, la cantidad de habitaciones,
-     * la cantidad de baños, la superficie mínima, el comentario adicional, el tipo de transacción, la cantidad de patios,
-     * la cantidad de garajes, la superficie máxima y el precio máximo. A continuación, inserta estos valores en la tabla
-     * REQUERIMIENTOS_CLIENTE de la base de datos. Si la inserción es exitosa, se realiza un commit para confirmar los cambios
-     * en la base de datos y se muestra un mensaje de éxito en la consola. En caso de producirse un error durante la inserción,
-     * se realiza un rollback para deshacer cualquier cambio y se muestra un mensaje de error en la consola.
+     * Finaliza el proceso de registro de requerimientos de un cliente y regresa a la pestaña de Inicio.
+     * Llama al método 'cambiarPestana()' para cambiar a la pestaña de Inicio.
+     * Obtiene los valores de los campos de texto de la ventana de registro.
+     * Llama al procedimiento almacenado 'RegistrarRequerimientosCliente' para registrar los requerimientos del cliente en la base de datos.
+     * Realiza un commit en la conexión de base de datos para confirmar los cambios realizados.
+     *
+     * @FXML Este método está asociado a un evento de acción en la interfaz gráfica definida en un archivo FXML.
+     * Se invoca cuando el usuario realiza una acción para finalizar el registro de requerimientos de un cliente.
      */
     @FXML
     void FinalizarC() {
@@ -394,11 +330,12 @@ public class InmobiliariaController {
         BigDecimal superficieMax = new BigDecimal(SUPERFICIEMAX.getText());
         BigDecimal precioMax = new BigDecimal(PRECIOMAXIMOTXT.getText());
 
-        // Insertar los valores en la tabla REQUERIMIENTOS_CLIENTE de la base de datos
+        // Llamar al procedimiento almacenado RegistrarRequerimientosCliente
+        String insertProcedure = "{CALL RegistrarRequerimientosCliente(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+
         try {
-            String query =
-                    "INSERT INTO REQUERIMIENTOS_CLIENTE (IDCONTRATOBUSQUEDA, TIPOINMUEBLE, ZONA, PRECIOMIN, CANTIDADHABITACIONES, CANTIDADBANOS, SUPERFICIEMIN, COMENTARIOADICIONAL, TIPOTRANSACCION, PATIOS, GARAJES, SUPERFICIEMAX, PRECIOMAX) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(query);
+            // Preparar la llamada al procedimiento almacenado
+            CallableStatement statement = connection.prepareCall(insertProcedure);
             statement.setInt(1, idContratoBusquedaCC);
             statement.setString(2, tipoInmueble);
             statement.setString(3, zona);
@@ -412,8 +349,11 @@ public class InmobiliariaController {
             statement.setInt(11, garajes);
             statement.setBigDecimal(12, superficieMax);
             statement.setBigDecimal(13, precioMax);
-            statement.executeUpdate();
+
+            // Ejecutar la llamada al procedimiento almacenado
+            statement.execute();
             statement.close();
+
             connection.commit();
             // Mostrar mensaje de éxito
             System.out.println("Éxito: Los datos se han guardado correctamente en la base de datos.");
@@ -430,10 +370,6 @@ public class InmobiliariaController {
         }
     }
 
-
-    /**
-     * Limpia los campos de texto y selección.
-     */
     private void limpiarcampos() {
         MONTOTXT.clear();
         ESTADOTXT.clear();
@@ -464,24 +400,10 @@ public class InmobiliariaController {
         NACIMIENTOTXT.setValue(null);
     }
 
-    /**
-     * Cambia a la pestaña especificada en el TabPane.
-     *
-     * @param pestana La pestaña a la que se quiere cambiar.
-     */
     private void cambiarPestana(Tab pestana) {
         tabPane.getSelectionModel().select(pestana);
     }
 
-    /**
-     * Cambia a la pestaña de inicio en la interfaz gráfica y limpia los campos.
-     * <p>
-     * Este método cambia la pestaña activa en la interfaz gráfica a la pestaña de inicio
-     * y realiza la limpieza de los campos en dicha pestaña. Es útil para restablecer el
-     * estado inicial de la aplicación después de completar ciertas operaciones, especialmente
-     * cuando no se ha realizado ninguna transacción todavía y se desea volver al punto de partida.
-     * </p>
-     */
     public void VolverInicio() {
         cambiarPestana(tabInicio);
         limpiarcampos();
