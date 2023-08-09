@@ -13,7 +13,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d127f9dd-89ae-42ce-a423-bcb8f45d9619" name="Changes" comment="finalizado">
+    <list default="true" id="d127f9dd-89ae-42ce-a423-bcb8f45d9619" name="Changes" comment="proyecto finalizado usando los procedimientos almacenados creados en la base de datos">
+      <change afterPath="$PROJECT_DIR$/qodana.sarif.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qodana.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d5f7d252-5879-44db-b15c-347379661b88.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d5f7d252-5879-44db-b15c-347379661b88.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/InmobiliariaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/InmobiliariaController.java" afterDir="false" />
     </list>
@@ -37,7 +43,6 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="mavenHome" value="Use Maven wrapper" />
-        <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -47,38 +52,41 @@
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2RGft14bYj5Jd5PjMw8Leb28QDD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/olive/IdeaProjects/Inmobiliariafx/src/main/java/com/example/inmobiliariafx&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/olive/Downloads&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.21149425&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Confirmation&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_directory_selection": "C:/Users/olive/IdeaProjects/Inmobiliariafx/src/main/java/com/example/inmobiliariafx",
+    "last_opened_file_path": "C:/Users/olive/Downloads",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.21149425",
+    "settings.editor.selected.configurable": "settings.qodana",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlserver&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlserver"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\olive\IdeaProjects\Inmobiliariafx\src\main\java\com\example\inmobiliariafx\Imagenes" />
@@ -157,7 +165,30 @@
       <workItem from="1687653144313" duration="7427000" />
       <workItem from="1687663830977" duration="142000" />
       <workItem from="1687726509080" duration="292000" />
-      <workItem from="1687806381659" duration="9105000" />
+      <workItem from="1687806381659" duration="9476000" />
+      <workItem from="1687884833025" duration="893000" />
+      <workItem from="1687975638150" duration="25000" />
+      <workItem from="1688429833672" duration="70000" />
+      <workItem from="1688432206537" duration="8000" />
+      <workItem from="1689379857213" duration="27000" />
+      <workItem from="1689379924491" duration="8901000" />
+      <workItem from="1689560385269" duration="53000" />
+      <workItem from="1689906060416" duration="40000" />
+      <workItem from="1690382616039" duration="42000" />
+      <workItem from="1690382698534" duration="208000" />
+      <workItem from="1690382987071" duration="382000" />
+      <workItem from="1690383383935" duration="355000" />
+      <workItem from="1690385559600" duration="20000" />
+      <workItem from="1690508806846" duration="133000" />
+      <workItem from="1690947384353" duration="66000" />
+      <workItem from="1690947474398" duration="595000" />
+      <workItem from="1691194313001" duration="71000" />
+      <workItem from="1691194662213" duration="22000" />
+      <workItem from="1691541807738" duration="247000" />
+      <workItem from="1691542071902" duration="455000" />
+      <workItem from="1691542542424" duration="311000" />
+      <workItem from="1691543006538" duration="1002000" />
+      <workItem from="1691544106079" duration="614000" />
     </task>
     <task id="LOCAL-00001" summary="modificacion de documentacion">
       <created>1687313638646</created>
@@ -269,7 +300,15 @@
       <option name="project" value="LOCAL" />
       <updated>1687726562972</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="proyecto finalizado usando los procedimientos almacenados creados en la base de datos">
+      <option name="closed" value="true" />
+      <created>1687820311465</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1687820311465</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,6 +336,11 @@
     <MESSAGE value="ordenado final" />
     <MESSAGE value="correccion del archivo fxml por que no funcionaba por el orden" />
     <MESSAGE value="elimine el setautocomit por que ya lo tenia" />
-    <option name="LAST_COMMIT_MESSAGE" value="elimine el setautocomit por que ya lo tenia" />
+    <MESSAGE value="proyecto finalizado usando los procedimientos almacenados creados en la base de datos" />
+    <option name="LAST_COMMIT_MESSAGE" value="proyecto finalizado usando los procedimientos almacenados creados en la base de datos" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

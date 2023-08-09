@@ -92,14 +92,7 @@ public class InmobiliariaController {
                 String numeroIdentificacion = resultSet.getString("NUMEROIDENTIFICACIONCLIENTE");
 
                 // Construir un mensaje con la información del cliente encontrado
-                String mensaje = "Cliente encontrado:\n" + "ID: " + id + "\n" + "Nombre: " + nombre + "\n" +
-                        "Número de Identificación: " + numeroIdentificacion;
-
-                // Mostrar un cuadro de diálogo con el mensaje y las opciones "Agregar Contrato" y "Cancelar"
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Cliente encontrado");
-                alert.setHeaderText(null);
-                alert.setContentText(mensaje);
+                Alert alert = getAlert(id, nombre, numeroIdentificacion);
 
                 // Crear botones personalizados para las opciones
                 ButtonType agregarContratoButton = new ButtonType("Agregar Contrato");
@@ -134,6 +127,18 @@ public class InmobiliariaController {
             // Manejar cualquier error de SQL imprimiendo la traza de la excepción
             e.printStackTrace();
         }
+    }
+
+    private static Alert getAlert(int id, String nombre, String numeroIdentificacion) {
+        String mensaje = "Cliente encontrado:\n" + "ID: " + id + "\n" + "Nombre: " + nombre + "\n" +
+                "Número de Identificación: " + numeroIdentificacion;
+
+        // Mostrar un cuadro de diálogo con el mensaje y las opciones "Agregar Contrato" y "Cancelar"
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Cliente encontrado");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        return alert;
     }
 
 
