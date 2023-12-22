@@ -14,19 +14,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d127f9dd-89ae-42ce-a423-bcb8f45d9619" name="Changes" comment="proyecto finalizado usando los procedimientos almacenados creados en la base de datos">
-      <change afterPath="$PROJECT_DIR$/qodana.sarif.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qodana.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/d5f7d252-5879-44db-b15c-347379661b88.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/d5f7d252-5879-44db-b15c-347379661b88.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/InmobiliariaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/inmobiliariafx/InmobiliariaController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -75,7 +74,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.21149425",
     "settings.editor.selected.configurable": "settings.qodana",
@@ -113,6 +112,13 @@
         <item itemvalue="Application.InmobiliariaApplication" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-249ae16d76d6-a618e4d4" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -189,6 +195,7 @@
       <workItem from="1691542542424" duration="311000" />
       <workItem from="1691543006538" duration="1002000" />
       <workItem from="1691544106079" duration="614000" />
+      <workItem from="1703260203104" duration="251000" />
     </task>
     <task id="LOCAL-00001" summary="modificacion de documentacion">
       <created>1687313638646</created>

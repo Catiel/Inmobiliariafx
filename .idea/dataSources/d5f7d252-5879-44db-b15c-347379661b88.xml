@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="Inmobiliaria@localhost">
-  <database-model serializer="dbm" dbms="MSSQL" family-id="MSSQL" format-version="4.49">
+  <database-model serializer="dbm" dbms="MSSQL" family-id="MSSQL" format-version="4.51">
     <root id="1"/>
     <collation id="2" parent="1" name="Albanian_BIN">
       <Description>Albanian, binary sort</Description>
@@ -16778,7 +16778,6 @@
     </schema>
     <schema id="5562" parent="5510" name="dbo">
       <Current>1</Current>
-      <IntrospectionTimestamp>2023-06-21.17:35:26.093</IntrospectionTimestamp>
       <ObjectId>1</ObjectId>
     </schema>
     <schema id="5563" parent="5510" name="guest">
